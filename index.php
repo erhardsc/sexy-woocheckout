@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Slider Div
+Plugin Name: Sexy WooCheckout
 Plugin URI:
-Description: Dynamic slider div that shows widget content after a link click
-Version: .1
+Description: Dynamic slider that allows AJAX cart and checkout functionality to speed up customer conversion.
+Version: 1.0
 Author: Grayson Erhard
 Author URI: https://graysonerhard.com
 License: GPLv2 or later
