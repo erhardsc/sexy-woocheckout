@@ -78,21 +78,21 @@ class WC_Sexy_WooCheckout_Settings_Tab {
             'default' => 'yes'
         ),
         'show_related_products' => array(
-            'title'   => __( 'Show related products', 'woocommerce-sexy-woocheckout' ),
+            'title'   => __( 'Show related products in cart', 'woocommerce-sexy-woocheckout' ),
             'type'    => 'checkbox',
             'id'   => 'wc_sexy_woocheckout_show_related_products',
             'default' => 'yes'
         ),
-        'theme' => array(
+        'dark_theme' => array(
             'title'   => __( 'Dark theme', 'woocommerce-sexy-woocheckout' ),
             'type'    => 'checkbox',
-            'id'   => 'wc_sexy_woocheckout_theme'
+            'id'   => 'wc_sexy_woocheckout_dark_theme'
         ),
-        'slide_out_screen_perc' => array(
-            'title'   => __( 'Slide Out Screen Percentage', 'woocommerce-sexy-woocheckout' ),
+        'slide_out_screen_px' => array(
+            'title'   => __( 'Desktop slide out screen pixel amount', 'woocommerce-sexy-woocheckout' ),
             'type'    => 'text',
             'id'   => 'wc_sexy_woocheckout_slide_out_screen_perc',
-            'default' => '40'
+            'default' => '420'
         ),
         'link_color' => array(
             'title'   => __( 'Link color', 'woocommerce-sexy-woocheckout' ),
@@ -113,7 +113,6 @@ class WC_Sexy_WooCheckout_Settings_Tab {
             'title'       => __( 'Cart Icon Class', 'woocommerce-sexy-woocheckout' ),
             'type'        => 'text',
             'desc' => __( 'The class associated with the cart icon that will trigger Sexy WooCheckout', 'woocommerce-sexy-woocheckout' ),
-//            'default'     => __( '', 'woocommerce-sexy-woocheckout' ),
             'desc_tip'    => true,
             'id'   => 'wc_sexy_woocheckout_cart_icon_class'
         ),

@@ -20,19 +20,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 define('SEXY_WOOCHECKOUT_URL', plugin_dir_url(__FILE__));
 define('SEXY_WOOCHECKOUT_PATH', plugin_dir_path(__FILE__));
 
+// ADMIN (NEEDS TO BE OUTSIDE OF IF STATEMENT TO MAKE 'ENABLED' CHANGES
+include_once ('includes/admin/admin.php');
+
 if (get_option('wc_sexy_woocheckout_enabled') === 'yes') {
 
   // ADMIN
-  include_once ('includes/admin/admin.php');
   include_once ('includes/admin/widget.php');
+
+  // FRONTEND
+  include_once ('includes/front-end/slider.php');
+//  include_once('assets/css/sexy-woo-checkout.dcss.php');
 
   // WOOCOMMERCE
   include_once ('includes/woocommerce/form-fields.php');
   include_once ('includes/woocommerce/customizations.php');
   include_once ('includes/woocommerce/ajax.php');
 
-  // FRONTEND
-  include_once ('includes/front-end/slider.php');
+
 
 
   add_action('wp_enqueue_scripts', 'sexy_woocheckout_scripts');
@@ -40,9 +45,9 @@ if (get_option('wc_sexy_woocheckout_enabled') === 'yes') {
 
     if ((!is_checkout()) && (!is_cart())) {
 
+      wp_enqueue_style('font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
       wp_enqueue_style('slider-div-style', SEXY_WOOCHECKOUT_URL .'assets/css/slider-div-style.css');
       wp_enqueue_style('sexy-woo-checkout', SEXY_WOOCHECKOUT_URL .'assets/css/sexy-woo-checkout.css');
-      wp_enqueue_style('font-awesome', 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
       wp_register_script('slider-div', SEXY_WOOCHECKOUT_URL .'assets/js/slider-div.js', array('jquery'), false, true);
       wp_register_script('sexy-woo-checkout', SEXY_WOOCHECKOUT_URL .'assets/js/sexy-woo-checkout.js', array('jquery'), false, true);
