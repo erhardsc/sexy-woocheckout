@@ -6,10 +6,6 @@ function initialize_sexy_woo_checkout() {
 
 	console.log('sexy woo initialized');
 
-	//POPULATE SIMPLIFY COMMERCE TOKEN FIELDS
-	// var simplifyCommerceTokenField = '<p class="form-row woocommerce-SavedPaymentMethods-saveNew woocommerce-validated"><input id="wc-simplify_commerce-new-payment-method" name="wc-simplify_commerce-new-payment-method" type="checkbox" value="true" style="width:auto;"><label for="wc-simplify_commerce-new-payment-method" style="display:inline;">Save to account</label></p>';
-  //
-	// $(simplifyCommerceTokenField).insertAfter('#wc-simplify_commerce-cc-form');
 
 
   if ($('.woocommerce .cart-empty').length === 1) {
@@ -23,6 +19,7 @@ function initialize_sexy_woo_checkout() {
 	} else {
     $('.woocommerce-shipping-fields').fadeIn();
 	}
+
 
   $('#slider .fa-shopping-cart').unbind().click(function(e) {
 
@@ -89,7 +86,13 @@ function initialize_sexy_woo_checkout() {
 
       e.preventDefault();
 
-      woo_add_to_cart($(this).val());
+      if ($(this).val()) {
+      	productID = $(this).val();
+			} else {
+      	productID = $('input[name="product_id"]').val();
+			}
+
+      woo_add_to_cart(productID);
 
       view_slider($(window).width(), 'cart', $(this));
 
@@ -259,7 +262,8 @@ function remove_coupon(element) {
 function woo_add_to_cart(productID) {
 
   $.post('?wc-ajax=add_to_cart', {product_id : productID, quantity: 1}).done(function(data) {
-    ajax_refresh_cart_and_checkout(data);    
+    ajax_refresh_cart_and_checkout(data);
+    after_woo_add_to_cart(productID);
   });
 }
 
@@ -371,4 +375,11 @@ function ajax_place_order() {
     $('#slider #loading').fadeOut();
 
   });
+}
+
+
+function after_woo_add_to_cart(data) {
+
+	project_specific(data);
+
 }

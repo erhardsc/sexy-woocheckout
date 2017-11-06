@@ -2,9 +2,34 @@ $=jQuery;
 
 $(document).ready(function() {initialize();});
 
+
+
 function initialize() {
+
+  let cartIconClass;
 	
 	console.log('slider-div');
+
+
+  if (typeof localized_config.sexy_woocheckout_cart_icon_class !== 'undefined') {
+
+    cartIconClass = '.'+localized_config.sexy_woocheckout_cart_icon_class;
+
+  } else {
+
+    $('a').each(function(i) {
+      let baseURI = $('a')[i].baseURI;
+      let href = $('a')[i].href;
+      let pathname = $('a')[i].pathname;
+
+      if (pathname === '/home/cart/') {
+        cartIconClass = $('a')[i].attr('class');
+      }
+
+    });
+  }
+
+
 
 	// CLOSE SLIDER
 	$('#slider .fa-times-circle').unbind().click(function (e) {
@@ -27,15 +52,8 @@ function initialize() {
 
 	});
 
-	$('#read-more').unbind().click(function (e) {
 
-		e.preventDefault();
-
-		view_slider($(window).width(), 'Read More', $(this));
-
-	});
-
-	$('nav .fa-shopping-cart').unbind().click(function (e) {
+	$(cartIconClass).unbind().click(function (e) {
 
 		e.preventDefault();
 
@@ -43,13 +61,32 @@ function initialize() {
 
 	});
 
-	$('nav #menu-item-792').unbind().click(function (e) {
+  $(cartIconClass+' span').unbind().click(function (e) {
 
-		e.preventDefault();
+    e.preventDefault();
 
-		view_slider($(window).width(), 'Contact', $(this));
+    view_slider($(window).width(), 'cart', $(this));
 
-	});
+  });
+
+	// ABOUT - GE.COM
+  // $('#read-more').unbind().click(function (e) {
+  //
+   //  e.preventDefault();
+  //
+   //  view_slider($(window).width(), 'Read More', $(this));
+  //
+  // });
+
+
+	// CONTACT - GE.COM
+	// $('nav #menu-item-792').unbind().click(function (e) {
+  //
+	// 	e.preventDefault();
+  //
+	// 	view_slider($(window).width(), 'Contact', $(this));
+  //
+	// });
 	
 }
 
